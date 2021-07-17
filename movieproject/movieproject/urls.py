@@ -22,4 +22,5 @@ urlpatterns = [
     path('', movie.views.index, name="index"),
     path('db/', movie.views.init_db, name="init_db"),
     path('movie/', include('movie.urls')),
+    path('account/', include('account.urls')),    
 ]
