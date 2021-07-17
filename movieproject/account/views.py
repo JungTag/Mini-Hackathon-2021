@@ -12,7 +12,7 @@ def login(request):
     
     if user is not None:
       auth.login(request, user)
-      return redirect('main')
+      return redirect('index')
     
     else:
       msg = "아이디 혹은 비밀번호가 일치하지 않습니다."
@@ -51,4 +51,4 @@ def signup(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('account:login')
+    return redirect('index')
