@@ -64,7 +64,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'modelproject/templates'
+            'movieproject/templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
