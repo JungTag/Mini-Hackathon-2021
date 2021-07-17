@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Movie(models.Model):
     title_kor = models.CharField(max_length=200)
     title_eng = models.CharField(max_length=200)
-    poster = models.ImageField(upload_to="poster/", blank=True, null=True)
+    poster = models.CharField(max_length=200)
     rating_aud = models.FloatField(null=True)
     rating_cri = models.FloatField(null=True)
     rating_net = models.FloatField(null=True)
