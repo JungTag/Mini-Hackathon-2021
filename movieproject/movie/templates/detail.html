@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
     {% block content %}
-        <h1>detail</h1>
+        <div class="movie-content">
+            <p>제목: {{movie.title_kor}}</p>
+            <p>영제: {{movie.title_eng}}</p>
+            <img src="{{movie.postr_url}}"/>
+            <p>{{movie.rating_aud}}</p>
+            <p>{{movie.rating_cri}}</p>
+            <p>{{movie.rating_net}}</p>
+            <p>{{movie.genre}}</p>
+            <p>{{movie.showtimes}}</p>
+            <p>{{movie.release_date}}</p>
+            <p>{{movie.rate}}</p>
+            <p>{{movie.summary}}</p>
+        </div>
     {% endblock %}

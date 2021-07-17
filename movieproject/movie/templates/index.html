@@ -1,4 +1,24 @@
 {% extends 'base.html' %}
     {% block content %}
     <h1>index</h1>
+    <div class="index-container" style="
+    display: flex;
+    flex-wrap: wrap;
+    ">
+        {% for movie in movies %}
+        <div class="card" style="
+        width: 25%;
+        margin-top: 50px;
+        ">
+            <a href="{% url 'movie:detail' movie.id %}">
+                <img src="{{movie.postr_url}}" class="card-img-top" alt="...">
+                <div class="card-body" style="
+                text-align: center;
+                text-decoration: none;
+                ">
+                  <p class="card-text">{{movie.title_kor}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     {% endblock %}
