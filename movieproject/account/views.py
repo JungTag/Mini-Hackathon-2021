@@ -28,7 +28,7 @@ def signup(request):
     
     if password1 == password2:
       try:
-        user = User.objects.get(username=usernmae)
+        user = User.objects.get(username=username)
         msg = "이미 사용중인 아이디입니다."
         return render(request, 'signup.html', {'msg' : msg})
       
@@ -36,7 +36,6 @@ def signup(request):
         user = User.objects.create_user(
           username = request.POST['username'],
           password = request.POST['password1'],
-          email = request.POST['email_address'],
           )
         user.save()
         
