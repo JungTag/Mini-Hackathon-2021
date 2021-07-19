@@ -17,5 +17,5 @@ class Movie(models.Model):
     staff = models.CharField(max_length=200)
 
 class Comment(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, related_name="movie", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
