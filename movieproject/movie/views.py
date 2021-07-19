@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie
+from .pagination_range import get_pagination_range
+from django.core.paginator import Paginator
 
 import requests
 
@@ -28,8 +30,27 @@ def init_db(request):
     return redirect('index')
 
 def index(request):
-    movies = Movie.objects.order_by('title_kor')
-    return render(request, 'index.html', {'movies': movies})
+    if 'query' in request.GET:
+        query = request.GET['query']
+        movies = Movie.objects.filter(
+            title_kor__contains=query
+        ).order_by('title_kor')
+    else:
+        query = None
+        movies = Movie.objects.all().order_by('title_kor')
+    
+    paginator = Paginator(movies, 8)
+    page = request.GET.get('page', 1)
+    paginated_movies = paginator.get_page(page)
+    current_page = int(page) if page else 1
+    max_index = len(paginator.page_range)
+    start_index, end_index = get_pagination_range(current_page, max_index)
+    page_num_range = paginator.page_range[start_index:end_index]
+    
+    if query:
+        return render(request, 'index.html', {'movies': paginated_movies, 'page_range': page_num_range, 'query': query})
+    else:
+        return render(request, 'index.html', {'movies': paginated_movies, 'page_range': page_num_range})
 
 def detail(request, id):
     movie = get_object_or_404(Movie, pk=id)
