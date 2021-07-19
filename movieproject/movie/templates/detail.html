@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
     {% block content %}
         <div class="movie-content">
-            <p>제목: {{movie.title_kor}}</p>
-            <p>영제: {{movie.title_eng}}</p>
+            <p>제목: {{movie.title_kor}}, {{movie.title_eng}}</p>
             <img src="{{movie.postr_url}}"/>
-            <p>{{movie.rating_aud}}</p>
-            <p>{{movie.rating_cri}}</p>
-            <p>{{movie.rating_net}}</p>
-            <p>{{movie.genre}}</p>
-            <p>{{movie.showtimes}}</p>
-            <p>{{movie.release_date}}</p>
-            <p>{{movie.rate}}</p>
-            <p>{{movie.summary}}</p>
+            <p>관람객 평점: {{movie.rating_aud}}</p>
+            <p>평론가 평점: {{movie.rating_cri}}</p>
+            <p>네티즌 평점:{{movie.rating_net}}</p>
+            <p>장르: {{movie.genre}}</p>
+            <p>상영 시간: {{movie.showtimes}}</p>
+            <p>개봉일: {{movie.release_date}}</p>
+            <p>상영 등급: {{movie.rate}}</p>
+            <br/>
+            <p>줄거리: {{movie.summary}}</p>
         </div>
     {% endblock %}
