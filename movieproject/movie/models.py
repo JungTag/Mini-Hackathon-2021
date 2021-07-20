@@ -16,7 +16,6 @@ class Movie(models.Model):
     release_date = models.CharField(max_length=20)
     rate = models.CharField(max_length=100)
     summary = models.TextField()
-    # staff = models.CharField(max_length=200)
 
 
 class Comment(models.Model):

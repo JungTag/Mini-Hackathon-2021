@@ -65,7 +65,7 @@ def detail(request, id):
     movie = get_object_or_404(Movie, pk=id)
     staffs = Staff.objects.filter(movie=movie)
     comments = Comment.objects.filter(movie__pk=id)
-    return render(request, 'detail.html', {'movie': movie, 'staffs': staffs, "comments": comments})
+    return render(request, 'detail.html', {'movie': movie, 'staffs': staffs, 'comments': comments})
 
 
 def comment_create(request, id):
@@ -73,6 +73,7 @@ def comment_create(request, id):
     comment = Comment()
     comment.movie = Movie.objects.get(pk=movie_id)
     comment.user = request.user
-    comment.content = request.POST["content"]
-    comment.save()
+    if request.POST["content"]:
+        comment.content = request.POST["content"]
+        comment.save()
     return redirect('movie:detail', id)
