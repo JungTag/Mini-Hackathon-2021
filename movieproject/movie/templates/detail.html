@@ -2,7 +2,7 @@
     {% block content %}
         <div class="movie-content">
             <p>제목: {{movie.title_kor}}, {{movie.title_eng}}</p>
-            <img src="{{movie.postr_url}}"/>
+            <img src="{{movie.poster_url}}"/>
             <p>관람객 평점: {{movie.rating_aud}}</p>
             <p>평론가 평점: {{movie.rating_cri}}</p>
             <p>네티즌 평점:{{movie.rating_net}}</p>
@@ -12,5 +12,17 @@
             <p>상영 등급: {{movie.rate}}</p>
             <br/>
             <p>줄거리: {{movie.summary}}</p>
+        </div>
+        <div class="staffs-intro" style="
+        display:flex;
+        ">
+            {% for staff in staffs %}
+            <div class="staff-content" style="
+            margin-right: 20px;">
+                <p>이름: {{staff.name}}</p>
+                <p>역할: {{staff.role}}</p>
+                <img src="{{staff.image_url}}"/>
+            </div>
+            {% endfor %}
         </div>
     {% endblock %}
