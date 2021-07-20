@@ -1,4 +1,97 @@
 {% extends 'base.html' %}
+{% block css_content %}
+<style>
+  .comment-content {
+    margin-top: 50px;
+  }
+  .comment-content .form-control {
+    width: 90%;
+  }
+  .comment-textarea{
+    display: flex;
+    justify-content: space-between;
+  }
+  .comment{
+      width: 100%;
+  }
+  body {
+    background-color: #fff
+}
+    .write-btn{
+        margin:auto;
+    }
+
+
+.addtxt {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 13px;
+    width: 350px;
+    background-color: #e5e8ed;
+    font-weight: 500
+}
+
+.form-control:focus {
+    color: #000
+}
+
+.second {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.text1 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #56575b
+}
+
+.text2 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #56575b
+}
+
+.text3 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 4px;
+    color: #828386
+}
+
+.text3o {
+    color: #00a5f4
+}
+
+.text4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #828386
+}
+
+.text4i {
+    color: #00a5f4
+}
+
+.text4o {
+    color: white
+}
+
+.thumbup {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 5px
+}
+
+.thumbupo {
+    color: #17a2b8
+}
+</style>
+{%endblock%} 
     {% block content %}
         <div class="movie-content">
             <p>제목: {{movie.title_kor}}, {{movie.title_eng}}</p>
@@ -23,6 +116,35 @@
                 <p>역할: {{staff.role}}</p>
                 <img src="{{staff.image_url}}"/>
             </div>
+            {% endfor %}
+        </div>
+        <div class="comment-content">
+  
+            <div></div>
+            <div><span>한줄평</span></div>
+            {% if user.is_authenticated %}
+        <form action="{% url 'movie:comment_create' movie.id %}" method="POST">
+            {% csrf_token %}
+            <div class="comment-textarea">
+                <input class="form-control" rows="1" name="content"></ㅑ>
+                <button type="submit" class="btn btn-primary write-btn">작성</button>
+            </div>
+            
+        
+        </form>
+        {% endif %}
+        <div>
+            {% for comment in comments%}
+            
+            <div class="d-flex justify-content-center py-2">
+                <div class="second py-2 px-2  comment"> <span class="text1">{{comment.content}}</span>
+                    <div class="d-flex justify-content-between py-1 pt-2">
+                        <div><img src="https://i.imgur.com/tPvlEdq.jpg" width="18"><span class="text2">{{comment.user}}</span></div>
+                        <div><span class="text3">{{comment.created_at}}</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4"></span></div>
+                    </div>
+                </div>
+            </div>
+            
             {% endfor %}
         </div>
     {% endblock %}

@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie, Staff
+from .models import Movie, Staff, Comment
 from .pagination_range import get_pagination_range
 from django.core.paginator import Paginator
 
 import requests
 
 # Create your views here.
+
+
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
     res = requests.get(url)
@@ -34,6 +36,7 @@ def init_db(request):
             new_staff.save()
     return redirect('index')
 
+
 def index(request):
     if 'query' in request.GET:
         query = request.GET['query']
@@ -43,7 +46,7 @@ def index(request):
     else:
         query = None
         movies = Movie.objects.all().order_by('title_kor')
-    
+
     paginator = Paginator(movies, 8)
     page = request.GET.get('page', 1)
     paginated_movies = paginator.get_page(page)
@@ -51,13 +54,25 @@ def index(request):
     max_index = len(paginator.page_range)
     start_index, end_index = get_pagination_range(current_page, max_index)
     page_num_range = paginator.page_range[start_index:end_index]
-    
+
     if query:
         return render(request, 'index.html', {'movies': paginated_movies, 'page_range': page_num_range, 'query': query})
     else:
         return render(request, 'index.html', {'movies': paginated_movies, 'page_range': page_num_range})
 
+
 def detail(request, id):
     movie = get_object_or_404(Movie, pk=id)
-    staffs = Staff.objects.filter(movie = movie)
-    return render(request, 'detail.html', {'movie': movie, 'staffs': staffs})
+    staffs = Staff.objects.filter(movie=movie)
+    comments = Comment.objects.filter(movie__pk=id)
+    return render(request, 'detail.html', {'movie': movie, 'staffs': staffs, "comments": comments})
+
+
+def comment_create(request, id):
+    movie_id = id
+    comment = Comment()
+    comment.movie = Movie.objects.get(pk=movie_id)
+    comment.user = request.user
+    comment.content = request.POST["content"]
+    comment.save()
+    return redirect('movie:detail', id)
