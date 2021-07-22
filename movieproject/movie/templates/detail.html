@@ -1,150 +1,271 @@
 {% extends 'base.html' %}
 {% block css_content %}
 <style>
-  .comment-content {
-    margin-top: 50px;
-  }
-  .comment-content .form-control {
-    width: 90%;
-  }
-  .comment-textarea{
-    display: flex;
-    justify-content: space-between;
-  }
-  .comment{
-      width: 100%;
-  }
-  body {
-    background-color: #fff
-}
-    .write-btn{
-        margin:auto;
+    .comment-content {
+        margin: 30px 0 50px 0;
+    }
+
+    .comment-content .form-control {
+        width: 90%;
+    }
+
+    .comment-textarea {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .comment {
+        width: 100%;
+    }
+
+    body {
+        background-color: #fff;
+    }
+
+    .write-btn {
+        margin: auto;
     }
 
 
-.addtxt {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    font-size: 13px;
-    width: 350px;
-    background-color: #e5e8ed;
-    font-weight: 500
-}
+    .addtxt {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        font-size: 13px;
+        width: 350px;
+        background-color: #e5e8ed;
+        font-weight: 500
+    }
 
-.form-control:focus {
-    color: #000
-}
+    .form-control:focus {
+        color: #000
+    }
 
-.second {
-    width: 100%;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
+    .second {
+        width: 100%;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
 
-.text1 {
-    font-size: 13px;
-    font-weight: 500;
-    color: #56575b
-}
+    .text1 {
+        font-size: 13px;
+        font-weight: 500;
+        color: #56575b
+    }
 
-.text2 {
-    font-size: 13px;
-    font-weight: 500;
-    margin-left: 6px;
-    color: #56575b
-}
+    .text2 {
+        font-size: 13px;
+        font-weight: 500;
+        margin-left: 6px;
+        color: #56575b
+    }
 
-.text3 {
-    font-size: 13px;
-    font-weight: 500;
-    margin-right: 4px;
-    color: #828386
-}
+    .text3 {
+        font-size: 13px;
+        font-weight: 500;
+        margin-right: 4px;
+        color: #828386
+    }
 
-.text3o {
-    color: #00a5f4
-}
+    .text3o {
+        color: #00a5f4
+    }
 
-.text4 {
-    font-size: 13px;
-    font-weight: 500;
-    color: #828386
-}
+    .text4 {
+        font-size: 13px;
+        font-weight: 500;
+        color: #828386
+    }
 
-.text4i {
-    color: #00a5f4
-}
+    .text4i {
+        color: #00a5f4
+    }
 
-.text4o {
-    color: white
-}
+    .text4o {
+        color: white
+    }
 
-.thumbup {
-    font-size: 13px;
-    font-weight: 500;
-    margin-right: 5px
-}
+    .thumbup {
+        font-size: 13px;
+        font-weight: 500;
+        margin-right: 5px
+    }
 
-.thumbupo {
-    color: #17a2b8
-}
-</style>
-{%endblock%} 
-    {% block content %}
-        <div class="movie-content">
-            <p>제목: {{movie.title_kor}}, {{movie.title_eng}}</p>
-            <img src="{{movie.poster_url}}"/>
-            <p>관람객 평점: {{movie.rating_aud}}</p>
-            <p>평론가 평점: {{movie.rating_cri}}</p>
-            <p>네티즌 평점:{{movie.rating_net}}</p>
-            <p>장르: {{movie.genre}}</p>
-            <p>상영 시간: {{movie.showtimes}}</p>
-            <p>개봉일: {{movie.release_date}}</p>
-            <p>상영 등급: {{movie.rate}}</p>
-            <br/>
-            <p>줄거리: {{movie.summary}}</p>
-        </div>
-        <div class="staffs-intro" style="
+    .thumbupo {
+        color: #17a2b8
+    }
+
+    .sub-conatiner {
+        width: 100%;
+        height: 100%;
+        margin: 36px auto;
+        padding: 0;
+    }
+
+    .movie-content {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .movie-content .title {
+        height: 70px;
+        margin: 15px 0;
+    }
+
+    .movie-content .title .title-kor {
+        font-size: 40px;
+    }
+
+    .movie-content .title .title-eng {
+        font-size: 20px;
+        color: gray;
+    }
+
+    .movie-content .content {
+        display: flex;
+        height: 450px;
+        overflow: hidden;
+    }
+
+    .movie-content .content .poster {
+        display: inline-block;
+        width: 320px;
+        height: 450px;
+        border-radius: 5px;
+    }
+
+    .movie-content .content .detail-content {
+        margin-left: 20px;
+        padding: 0;
+        display: inline-block;
+        width: calc(100% - 332px);
+    }
+
+    .line {
+        height: 32px;
+    }
+
+    .movie-content .content .detail-content .div {
+        margin-bottom: 30px;
+    }
+
+    .movie-content .content .detail-content .list-title {
+        display: inline-block;
+        width: 80px;
+        margin-right: 20px;
+        font-size: 146x;
+        color: #56595C;
+    }
+
+    .list-title {
+        color: #56595C;
+        font-size: 16px;
+        height: 36px;
+    }
+
+    .staffs-intro {
         display:flex;
-        ">
-            {% for staff in staffs %}
-            <div class="staff-content" style="
-            margin-right: 20px;">
-                <p>이름: {{staff.name}}</p>
-                <p>역할: {{staff.role}}</p>
-                <img src="{{staff.image_url}}"/>
-            </div>
-            {% endfor %}
+        margin: 0;
+    }
+
+    .staff-content img {
+        border-radius: 5px;
+        margin: 0 20px 10px 0;
+    }
+
+    .staff-content p {
+        margin: 0 20px 0 0;
+        padding: 0;
+        font-size: 14px;
+    }
+
+    .staff-content p:nth-child(2) {
+        color: #56595C;
+    }
+
+</style>
+{%endblock%}
+{% block content %}
+<div class="sub-container">
+    <div class="movie-content">
+        <div class="title">
+            <span class="title-kor">{{movie.title_kor}}</span>
+            <span class="title-eng">{{movie.title_eng}}</span>
         </div>
-        <div class="comment-content">
-  
-            <div></div>
-            <div><span>한줄평</span></div>
-            {% if user.is_authenticated %}
+        <div class="content">
+            <img class="poster" src="{{movie.poster_url}}" />
+            <div class="detail-content">
+                <div class="line rating_aud">
+                    <span class="list-title">관람객 평점</span> <span>{{movie.rating_aud}} 점</span>
+                </div>
+                <div class="line rating-cri">
+                    <span class="list-title">평론가 평점</span> <span>{{movie.rating_cri}} 점</span>
+                </div>
+                <div class="line rating_net div">
+                    <span class="list-title">네티즌 평점</span> <span>{{movie.rating_net}} 점</span>
+                </div>
+                <div class="line genre">
+                    <span class="list-title">장르</span> <span>{{movie.genre}}</span>
+                </div>
+                <div class="showtimes">
+                    <span class="list-title">상영 시간</span> <span>{{movie.showtimes}}</span>
+                </div>            
+                <div class="line rate">
+                    <span class="list-title">상영 등급</span> <span>{{movie.rate}}</span>
+                </div>
+                <div class="line release_date div">
+                    <span class="list-title">개봉일</span> <span>{{movie.release_date}}</span>
+                </div>
+                <div class="line summary">
+                    <span class="list-title">줄거리</span>
+                    <p>{{movie.summary}}</p>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="line">
+        <span class="list-title">인물 정보</span>
+    </div>
+    <div class="staffs-intro">
+        {% for staff in staffs %}
+        <div class="staff-content">
+                <img src="{{staff.image_url}}" />
+                <p>{{staff.role}}</p>
+                <p>{{staff.name}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="comment-content">
+
+        <div></div>
+        <div><span>한줄평</span></div>
+        {% if user.is_authenticated %}
         <form action="{% url 'movie:comment_create' movie.id %}" method="POST">
             {% csrf_token %}
             <div class="comment-textarea">
                 <input class="form-control" rows="1" name="content"></ㅑ>
                 <button type="submit" class="btn btn-primary write-btn">작성</button>
             </div>
-            
-        
+
+
         </form>
         {% endif %}
         <div>
             {% for comment in comments%}
-            
+
             <div class="d-flex justify-content-center py-2">
                 <div class="second py-2 px-2  comment"> <span class="text1">{{comment.content}}</span>
                     <div class="d-flex justify-content-between py-1 pt-2">
-                        <div><img src="https://i.imgur.com/tPvlEdq.jpg" width="18"><span class="text2">{{comment.user}}</span></div>
-                        <div><span class="text3">{{comment.created_at}}</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4"></span></div>
+                        <div><img src="https://i.imgur.com/tPvlEdq.jpg" width="18"><span
+                                class="text2">{{comment.user}}</span></div>
+                        <div><span class="text3">{{comment.created_at}}</span><span class="thumbup"><i
+                                    class="fa fa-thumbs-o-up"></i></span><span class="text4"></span></div>
                     </div>
                 </div>
             </div>
-            
+
             {% endfor %}
         </div>
+    </div>
     {% endblock %}
