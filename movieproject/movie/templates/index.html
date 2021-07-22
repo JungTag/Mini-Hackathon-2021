@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
     {% block content %}
     <div class="row mb-2">
-      <div class="col-lg-8" style="width: 30%; margin-top: 2%; padding-bottom: 0;">
+      <div class="col-lg-8" style="width: 30%; margin: 30px auto 15px auto; padding-bottom: 0;">
           <form class="form-inline" method="GET" action="">
               <div class="form-group mb-2">
                 {% if query %}
@@ -15,6 +15,8 @@
     </div>
     <div class="index-container" style="
     margin-top: 0;
+    width: 100%;
+    padding: 0 160px 0 160px;
     display: flex;
     flex-wrap: wrap;
     ">
@@ -22,15 +24,17 @@
         {% for movie in movies %}
         <div class="card" style="
         width: 25%;
-        margin-top: 50px;
+        margin-bottom: 30px;
         ">
             <a href="{% url 'movie:detail' movie.id %}">
                 <img src="{{movie.poster_url}}" class="card-img-top" alt="...">
                 <div class="card-body" style="
                 text-align: center;
-                text-decoration: none;
                 ">
-                  <p class="card-text">{{movie.title_kor}}</p>
+                  <p class="card-text" style="
+                  ">
+                  {{movie.title_kor}}
+                  </p>
                 </div>
             </a>
         </div>
