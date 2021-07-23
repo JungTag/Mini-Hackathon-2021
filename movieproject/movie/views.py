@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 import requests
 
 # Create your views here.
-
+# adsfaf
 
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
