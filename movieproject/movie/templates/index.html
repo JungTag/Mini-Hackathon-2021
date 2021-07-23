@@ -1,78 +1,108 @@
-{% extends 'base.html' %}
-    {% block content %}
-    <div class="row mb-2">
-      <div class="col-lg-8" style="width: 30%; margin: 30px auto 15px auto; padding-bottom: 0;">
-          <form class="form-inline" method="GET" action="">
-              <div class="form-group mb-2">
-                {% if query %}
-                  <input type="search" class="form-control searchQuery" id="movieTitle" name="query" value="{{query}}" placeholder="Ex) 인셉션">
-                {% else %}
-                  <input type="search" class="form-control searchQuery" id="movieTitle" name="query" placeholder="Ex) 인셉션">
-                {% endif %}
-              </div>
-          </form>                            
+{% extends 'base.html' %} {% block content %}
+<div class="row mb-2">
+  <div
+    class="col-lg-8"
+    style="width: 30%; margin: 30px auto 15px auto; padding-bottom: 0"
+  >
+    <form class="form-inline" method="GET" action="">
+      <div class="form-group mb-2">
+        {% if query %}
+
+        <input
+          type="search"
+          class="form-control searchQuery"
+          id="movieTitle"
+          name="query"
+          value="{{query}}"
+          placeholder="Ex) 인셉션"
+        />
+        {% else %}
+
+        <input
+          type="search"
+          class="form-control searchQuery"
+          id="movieTitle"
+          name="query"
+          placeholder="Ex) 인셉션"
+        />
+        {% endif %}
       </div>
-    </div>
-    <div class="index-container" style="
+    </form>
+  </div>
+</div>
+<div
+  class="index-container"
+  style="
     margin-top: 0;
     width: 100%;
+    height: 100%;
     padding: 0 160px 0 160px;
     display: flex;
     flex-wrap: wrap;
-    ">
-    
-        {% for movie in movies %}
-        <div class="card" style="
-        width: 25%;
-        margin-bottom: 30px;
-        ">
-            <a href="{% url 'movie:detail' movie.id %}">
-                <img src="{{movie.poster_url}}" class="card-img-top" alt="...">
-                <div class="card-body" style="
-                text-align: center;
-                ">
-                  <p class="card-text" style="
-                  ">
-                  {{movie.title_kor}}
-                  </p>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-        <div style="width: 100%">
-          <nav aria-label="..." style="margin-left: 40%; margin-top: 2%; margin-bottom: 2%;">
-            <ul class="pagination">
-              {% if movies.has_previous %}
-              <li class="page-item">
-                <a href="?page=1&query={{ query }}" class="page-link">First</a>
-              </li>
-              {% else %}
-              <li class="page-item disabled">
-                <a href="?page=1&query={{ query }}" class="page-link">First</a>
-              </li>
-              {% endif %}
-        
-              {% for page in page_range %}
-                {% if page == movies.number %}
-                <li class="page-item active" aria-current="page">
-                  <span class="page-link">{{ page }}</span>
-                </li>
-                {% else %}
-                <li class="page-item">
-                  <a href="?page={{page}}&query={{ query }}" class="page-link">{{page}}</a>
-                </li>
-                {% endif %}
-              {% endfor %}
-              {% if movies.has_next %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{ movies.paginator.num_pages }}">Last</a>
-              </li>
-              {% else %}
-              <li class="page-item disabled">
-                <span class="page-link">Last</span>
-              </li>
-              {% endif %}
-            </ul>
-          </nav>
+  "
+>
+  {% for movie in movies %}
+  <div class="card" style="width: 25%; height: 50%; margin-bottom: 30px">
+    <a
+      href="{% url 'movie:detail' movie.id %}"
+      style="text-decoration: none; height: 100%"
+    >
+      <img
+        src="{{movie.poster_url}}"
+        class="card-img-top"
+        alt="..."
+        style="object-fit: cover; height: 85%"
+      />
+      <div
+        class="card-body"
+        style="
+          text-align: center;
+          border-top: 1px solid rgba(0, 0, 0, 0.125);
+          height: 15%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <p class="card-text" style="color: black">{{movie.title_kor}}</p>
       </div>
-    {% endblock %}
+    </a>
+  </div>
+  {% endfor %}
+  <div style="width: 100%; display: flex; justify-content: center">
+    <nav aria-label="..." style="margin-top: 2%; margin-bottom: 2%">
+      <ul class="pagination">
+        {% if movies.has_previous %}
+        <li class="page-item">
+          <a href="?page=1&query={{ query }}" class="page-link">First</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a href="?page=1&query={{ query }}" class="page-link">First</a>
+        </li>
+        {% endif %} {% for page in page_range %} {% if page == movies.number %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">{{ page }}</span>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a href="?page={{page}}&query={{ query }}" class="page-link"
+            >{{page}}</a
+          >
+        </li>
+        {% endif %} {% endfor %} {% if movies.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ movies.paginator.num_pages }}"
+            >Last</a
+          >
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Last</span>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  {% endblock %}
+</div>
